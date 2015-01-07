@@ -6,7 +6,6 @@ import csv
 output = csv.writer(open('nsa-archive-pdf-scrape.csv', 'w')) #output csv for later use
 output.writerow(["file_url","link_title","date","title","article_url","publication", "description","tags"]) # Write column headers as the first line
 archive = open('nsa-archive.csv','rU') #read csv in
-pile = set() #deduplication
 reader = csv.DictReader(archive)
 #scrape each url
 for row in reader:
