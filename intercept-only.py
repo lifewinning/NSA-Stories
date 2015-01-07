@@ -12,7 +12,7 @@ for row in reader:
     url = urllib.urlopen(row['url'])
     soup = BeautifulSoup(url)
     import re
-    intercept = re.search('https://firstlook.org/theintercept/article/', row['url'])
+    intercept = re.search('https://firstlook.org/theintercept/', row['url'])
     if intercept:
         print "searching "+ row['url']+" ..."
         #let's look for some meta tags
