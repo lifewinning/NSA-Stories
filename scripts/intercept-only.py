@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import urllib
 import csv
 
-output = csv.writer(open('incercept-document-citations.csv', 'w')) #output csv for later use
+output = csv.writer(open('intercept-document-citations.csv', 'w')) #output csv for later use
 output.writerow(["file_url","link_title","date","title","article_url","publication", "description"]) # Write column headers as the first line
 archive = open('nsa-archive.csv','rU') #read csv in
 reader = csv.DictReader(archive)
