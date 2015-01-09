@@ -41,7 +41,7 @@
 <div class="jumbotron">
     	<h1>Adding Some Basic Contextual Information To The Intercept's Documents Page</h1>
     	<h3>Filter By Article</h3>
-      <select class="form-control" ng-model="query.article_title"><option ng-repeat="t in titles">{{t.title | uppercase}}</option></select>
+      <select class="form-control" ng-model="query.article_title"><option ng-repeat="t in titles | uppercase">{{t.title}}</option></select>
       <h3><a href="#about">What Is This</a></h3>
 </div>
     <div ng-repeat= "n in documents | filter:query">
