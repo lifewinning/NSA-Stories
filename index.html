@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+	<title>Intercept++Context</title>
+	<!-- fonts -->
+	<!-- <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'> -->
+	<!-- Bootstrap -->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,700italic|PT+Serif' rel='stylesheet' type='text/css'>
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+	<![endif]-->
+	<!-- jQuery -->
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+	<!-- Angular -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
+<script src="https://code.angularjs.org/1.2.6/angular-sanitize.js"></script>
+<script src="https://code.angularjs.org/1.2.6/angular-resource.js"></script>
+<script src="script.js"></script>
+  <style type="text/css">
+  .img{
+    height:250px;
+    background-size: cover;
+  }
+  </style>
+</head>
+<body>
+<div ng-controller="context">
+<div class="jumbotron">
+    	<h1>Adding Some Basic Contextual Information To The Intercept's Documents Page</h1>
+    	<h3>Filter By Article</h3>
+      <select class="form-control" ng-model="query.article_title"><option ng-repeat="t in titles | uppercase">{{t.title}}</option></select>
+      <h3><a href="#about">What Is This</a></h3>
+</div>
+    <div ng-repeat= "n in documents | filter:query">
+      <div class="row">
+      	<a href="{{n.file_url}}">
+        <div class="col-md-3 col-md-offset-1 img" id ='{{n.divID}}' ng-style= "{'background-image':'url(http://www.documentcloud.org/documents/{{n.number}}/pages/{{n.divID}}-p1-normal.gif)'}" >
+         <!-- <img ng-src='http://www.documentcloud.org/documents/{{n.number}}/pages/{{n.divID}}-p1-normal.gif' class="img-responsive"/> -->
+        </div>
+        </a>
+        <div class="col-md-6 col-md-offset-1">
+      		<h2><a href="{{n.file_url}}">{{n.title}}</a></h2>
+      		<hr>
+      		<h4>Cited In:</h4>
+          <h4><a href="{{n.article_url}}">{{n.article_title}}</a></h4>
+      		<h5>Published {{n.date}}</h5>
+          <h5>What Was This Story About:</h5><p>{{n.description}}</p>
+        </div>
+      </div>
+    <!-- repeat -->
+  </div>
+<!-- container -->
+</div>
+<div id="about" class="jumbotron">
+		<h3>Do you ever look at <a href="http://firstlook.org/theintercept/documents/">this page</a> and feel really annoyed?</h3>
+    <p>No? No that was just me? Well, OK.</p><p>
+    So. This really annoys <em>me</em> because it's not really helpful to a researcher or someone who wants to maybe sift through the documents and get a bigger grasp of what's been learned from them. There's no search, no filters, no path back to the original article citing this document. How does anyone figure out what a document actually <em>proves</em>?</p>
+		<p>I scraped a bunch of articles on The Intercept for links to documents hosted on their Documents page. Then I scraped some of the meta tags on those stories to get brief descriptions about them. It isn't every single document because I didn't use a complete list of every Intercept article ever. This is a thing to work on, I know. Please help if you want to help!</p>
+		<p>Other news websites that have published Snowden documents have done a somewhat better job contextualizing their releases&mdash;like look how <a href="http://www.theguardian.com/world/interactive/2014/jan/16/nsa-dishfire-text-messages-documents">The Guardian</a> does it! And look at the work the <a href="https://www.aclu.org/nsa-documents-search">ACLU</a> is doing making Snowden documents searchable! This is not impossible, and I think it's something The Intercept cares about doing at some point. I mean, this is a thing I probably wouldn't have even made if <a href="http://github.com/joshbegley/NSA-Stories">Josh Begley</a> and Margot Williams over at The Intercept hadn't started compiling an index of released documents which gave me a csv of articles to use as a starting point. (Thanks Josh and Margot you are really cool.)</p>
+    <p>This project was partly to solve a problem for me and partly so I could learn some things. I totally did! More on how I actually made this in <a href="http://github.com/lifewinning/NSA-Stories">the repo</a>.</p>
+
+</div>
+</body>
+</html>
